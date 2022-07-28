@@ -38,11 +38,19 @@ module "nsg" {
   location             = var.az_region
   public_subnet_ids    = module.vnet.public_subnet_ids
 }
-module "vm" {
+module "vm_private" {
     source = "./vm/"
     env                = terraform.workspace
     rg_name            = azurerm_resource_group.rg-panin.name
     location           = var.az_region
-    subnet_id          = module.vnet.public_subnet_ids[0]
+    subnet_id          = module.vnet.private_subnet_ids[0]
+    ifpub              = false
+}
+module "vm_public" {
+    source = "./vm/"
+    env                = terraform.workspace
+    rg_name            = azurerm_resource_group.rg-panin.name
+    location           = var.az_region
+    subnet_id          = module.vnet.private_subnet_ids[0]
     ifpub              = true
 }
