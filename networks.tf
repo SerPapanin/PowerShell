@@ -2,11 +2,11 @@
 
 
 # Create virtual network
-resource "azurerm_virtual_network" "TFNet" {
-    name                = "LabVnet"
+resource "azurerm_virtual_network" "ExitVNet" {
+    name                = "Vnet-${var.env}"
     address_space       = ["10.0.0.0/16"]
-    location            = azurerm_resource_group.panin_exit_dev.location
-    resource_group_name = azurerm_resource_group.panin_exit_dev.name
+    location            = var.az_region
+    resource_group_name = azurerm_resource_group.rg-panin.name
 
     tags = {
         environment = "Terraform Networking"

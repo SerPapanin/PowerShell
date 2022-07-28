@@ -2,39 +2,39 @@ locals {
 nsgrules = {
    
     rdp = {
-      name                       = "rdp"
-      priority                   = 100
+      name                       = "Allow_RDP"
+      priority                   = 1001
       direction                  = "Inbound"
       access                     = "Allow"
       protocol                   = "Tcp"
       source_port_range          = "*"
       destination_port_range    = "3389"
-      source_address_prefix      = "VirtualNetwork"
+      source_address_prefix      = "*"
       destination_address_prefix = "*"
     }
  
-    sql = {
-      name                       = "sql"
-      priority                   = 101
+    ssh = {
+      name                       = "Allow_SSH"
+      priority                   = 1002
       direction                  = "Inbound"
       access                     = "Allow"
       protocol                   = "Tcp"
       source_port_range          = "*"
-      destination_port_range     = "1433"
-      source_address_prefix      = "SqlManagement"
-      destination_address_prefix = "192.168.2.0/24"
+      destination_port_range     = "22"
+      source_address_prefix      = "*"
+      destination_address_prefix = "*"
     }
  
-    http = {
-      name                       = "http"
-      priority                   = 201
+    monitor = {
+      name                       = "Allow_Monitor"
+      priority                   = 1100
       direction                  = "Inbound"
       access                     = "Allow"
       protocol                   = "Tcp"
       source_port_range          = "*"
-      destination_port_range     = "80"
+      destination_port_range     = "6654"
       source_address_prefix      = "*"
-      destination_address_prefix = "192.168.2.0/24"
+      destination_address_prefix = "*"
     }
   }
  
